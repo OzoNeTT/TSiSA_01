@@ -2,8 +2,7 @@
 #include <cmath>
 #include <string>
 
-double Fun(double x)
-{
+double Fun(double x){
     return -sqrt(x)*sin(x);
 }
 
@@ -13,14 +12,11 @@ int F(int n) {
     else
         return F(n - 1) + F(n - 2);
 }
-void Fib(double a_old, double b_old, double eps)
-{
+void Fib(double a_old, double b_old, double eps){
     std::cout<<"\n\n\n\tМетод Фибоначчи:\n\n";
-    double x1, x2, result_x, funcInX1, funcInX2;
+    double a, b, x1, x2, result_x, funcInX1, funcInX2;
     int N = 3;
     bool done = false;
-    double a = a_old;
-    double b = b_old;
     while(!done) {
 
         a = a_old;
@@ -45,21 +41,19 @@ void Fib(double a_old, double b_old, double eps)
                 x1 = a + (double) F(N - i - 2) / F(N - i) * (b - a);
                 funcInX1 = Fun(x1);
             }
+            if (fabs(b - a) <= eps) {
+                done = true;
+                break;
+            }
 
         }
-
         result_x = (a + b) / 2;
         std::cout << "Итерация № " << N << '\n'
                   << "x1 = " << x1 << "\t\tF(x1) = " << funcInX1
                   << "\nx2 = " << x2 << "\t\tF(x2) = " << funcInX2 << std::endl << result_x << " +- "
                   << std::to_string(fabs(b - a) / 2)
                   << '\n' << std::endl;
-
-        if (fabs(b - a) <= eps) {
-            done = true;
-        }
         N++;
-
     }
     result_x = (a + b) / 2;
 
