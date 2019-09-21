@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cmath>
 #include <string>
+#include <vector>
 
 double Function(double x){
     return -sqrt(x)*sin(x);
@@ -71,14 +72,15 @@ void optimalPassiveSearch(double begin, double end, double epsilon) {
     bool done = false;
     double best_x = 0;
     double best_y = 1;
-    double *x_storage;
+    std::vector<double> x_storage;
     while(!done) {
         N++;
-        x_storage = new double[N];
+        x_storage.resize(N+2);
         counter = 0;
-        for (double element = begin; element <= end; element += fabs((end - begin)/ (N + 1)))
-            x_storage[counter++] = element;
 
+        for(double element = begin; element <= end; element += fabs((end - begin)/ (N + 1))) {
+            x_storage[counter++] = element;
+        }
         for (iterator = 1; iterator < N + 2; iterator++) {
             if (Function(x_storage[iterator]) <= best_y) {
                 best_y = Function(x_storage[iterator]);
@@ -89,8 +91,8 @@ void optimalPassiveSearch(double begin, double end, double epsilon) {
             }
 
         }
-        //TODO CLEAR MEMORY
-        //delete[] x_storage;
+
+        x_storage.clear();
 
         std::cout << "Number of points: " << N
                   << "\t\tx:= " << best_x << " +- "
@@ -103,6 +105,7 @@ void optimalPassiveSearch(double begin, double end, double epsilon) {
     std::cout << "Result:\nx = " << best_x << " +- " << std::to_string(fabs((end - begin)/ (N+ 1)))
               << "\t\tF(x) = " << Function(best_x)
               << "\nNumber of points: " << N;
+
 }
 int main() {
     double a = 0;
