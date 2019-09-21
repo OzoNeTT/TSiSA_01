@@ -14,7 +14,7 @@ int FibonacciNumber(int n) {
 }
 
 void Fib(double begin, double end, double epsilon){
-    std::cout<<"\n\n\n\tМетод Фибоначчи:\n\n";
+    std::cout<<"\n\n\n\tFibonacci Search:\n\n";
     double begin_new, end_new, x1, x2, result_x, function_in_x1, function_in_x2;
     int N = 3;
     bool done = false;
@@ -49,47 +49,60 @@ void Fib(double begin, double end, double epsilon){
                 break;
             }
         }
-        //result_x = (begin_new + b) / 2;
-        //std::cout << "Итерация № " << N << '\n'
-        //          << "x1 = " << x1 << "\t\tF(x1) = " << function_in_x1
-        //          << "\nx2 = " << x2 << "\t\tF(x2) = " << funcInX2 << std::endl << result_x << " +- "
-        //          << std::to_string(fabs(b - begin_new) / 2)
-        //          << '\n' << std::endl;
+        result_x = (begin_new + end_new) / 2;
+        std::cout << "Number of points: " << N
+                  << "\t\tx:= " << result_x << " +- "
+                  << std::to_string(fabs(end_new - begin_new) / 2)
+                  << "\t\tF(x):= " << Function(result_x)
+                  << '\n';
         N++;
     }
     result_x = (begin_new + end_new) / 2;
 
-    std::cout << "Результат:\nx = " << result_x << " +- " << std::to_string(fabs(end_new - begin_new) / 2)
+    std::cout << "Result:\nx = " << result_x << " +- " << std::to_string(fabs(end_new - begin_new) / 2)
               << "\t\tF(x) = " << Function(result_x)
-              << "\nКоличество итераций: " << N - 1;
+              << "\nNumber of points: " << N - 1;
 }
 
 void optimalPassiveSearch(double begin, double end, double epsilon) {
 
-    std::cout<<"\n\n\n\tМетод Пассивного поиска:\n\n";
-    int N = std::ceil((end- begin) / epsilon), iterator, counter = 0;
+    std::cout<<"\n\n\n\tPassive Search:\n\n";
+    int N = 0, iterator, counter = 0;
+    bool done = false;
+    double best_x = 0;
+    double best_y = 1;
+    double *x_storage;
+    while(!done) {
+        N++;
+        x_storage = new double[N];
+        counter = 0;
+        for (double element = begin; element <= end; element += fabs((end - begin)/ (N + 1)))
+            x_storage[counter++] = element;
 
-    auto * x_storage = new double[N];
-    for (double element = begin; element <= end; element += epsilon)
-        x_storage[counter++] = element;
+        for (iterator = 1; iterator < N + 2; iterator++) {
+            if (Function(x_storage[iterator]) <= best_y) {
+                best_y = Function(x_storage[iterator]);
+                best_x = x_storage[iterator];
+            }
+            if (fabs((end - begin)/ N) <= epsilon) {
+                done = true;
+            }
 
-    double result_x;
-
-    for (iterator = 0; iterator < N; iterator++){
-        if(Function(x_storage[iterator]) < Function(x_storage[iterator + 1])) {
-            result_x = (x_storage[iterator - 1] + x_storage[ iterator + 1]) / 2;
-            break;
         }
+        //TODO CLEAR MEMORY
+        //delete[] x_storage;
+
+        std::cout << "Number of points: " << N
+                  << "\t\tx:= " << best_x << " +- "
+                  << std::to_string(fabs((end - begin)/ (N+ 1)))
+                  << "\t\tF(x):= " << best_y
+                  << '\n';
+
+
     }
-
-    std::cout << "Количество необходимых точек: " << N - 2<< '\n'
-              << "x = " << result_x
-              <<  " +- "
-              << std::to_string(epsilon / 2)
-              << "\t\tF(x) = " << Function(result_x)
-              << '\n' << std::endl;
-
-    delete[] x_storage;
+    std::cout << "Result:\nx = " << best_x << " +- " << std::to_string(fabs((end - begin)/ (N+ 1)))
+              << "\t\tF(x) = " << Function(best_x)
+              << "\nNumber of points: " << N;
 }
 int main() {
     double a = 0;
