@@ -29,4 +29,4 @@
 при использовании давольно малой точности (или же при N > 2) метод Фибоначчи окажется
 выгоднее. Сама программа работает стабильно, без ошибок и утечек памяти:
 
-[![Build Status](https://travis-ci.org/OzoNeTT/TSiSA_01.svg?branch=master)](https://travis-ci.org/OzoNeTT/TSiSA_01)
+[![Build Status](https://travis-ci.com/OzoNeTT/TSiSA_01.svg?token=sV8byM9dvFxT9RH6zSKV&branch=master)](https://travis-ci.com/OzoNeTT/TSiSA_01)
