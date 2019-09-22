@@ -53,7 +53,7 @@ void FibonacciSearch(double begin, double end, double epsilon){
                 x1 = begin_new + (double) FibonacciNumber(N - i - 2) / FibonacciNumber(N - i) * (end_new - begin_new);
                 function_in_x1 = Function(x1);
             }
-            if (fabs(end_new - begin_new) <= epsilon) {
+            if (fabs(end_new - begin_new) <= 2*epsilon) {
                 done = true;
                 break;
             }
@@ -85,13 +85,15 @@ void optimalPassiveSearch(double begin, double end, double epsilon) {
                 best_y = Function(x_storage[iterator]);
                 best_x = x_storage[iterator];
             }
-            if (fabs((end - begin)/ N) <= epsilon)
+            if (fabs((end - begin)/ (N+1)) <= epsilon) {
                 done = true;
+                break;
+            }
         }
         x_storage.clear();
-        PrintPoint(N, best_x, fabs((end - begin)/ (2 * N)));
+        PrintPoint(N, best_x, fabs((end - begin)/ (1 + N)));
     }
-    PrintResult(N, best_x, fabs((end - begin)/ (2* N)));
+    PrintResult(N, best_x, fabs((end - begin)/ (1 +  N)));
 }
 int main() {
     double begin, end, epsilon;
