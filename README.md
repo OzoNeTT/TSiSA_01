@@ -10,7 +10,7 @@
 
 ![picture](https://quicklatex.com/cache3/4e/ql_d935562e3347a742652f910e1235124e_l3.png)
 
-[График](http://yotx.ru/#!1/3_h/ubW/sX%400YM4X9t/2h/82J/a9%40IIfyv7W/%40E0nkjb3dfyB8Y293/2CfRMNu7JwyHk%403GI9blxe7%401v7AA==)
+![Picture](https://i.screenshot.net/89z3xc4)
 
 ### Входные параметры:
 
@@ -77,7 +77,7 @@
 
 ### Графики зависимости погрешности от числа точек
 
-[График](http://yotx.ru/#!1/3_7f2D/YuDfSOG8L%402D4ST10gRDGH/YP9g309Kre1vbPG2IGe7Gzu8A8jp6Slid%40OCdwC5ON3dAPEOIDsXoAvE2e7GGe8AsgXaOdja2d045R1ADmAw0MXZ7gaCdwA5OAOBLmG7GzDeAeTgAnRwdrC7v7NPomE3dk4Zj6dbjMety4vd/a39rf2NLd4W5Gx3Y4e3BTnY3bjgHUAQZ7sbIN4B5HR344x3ADnb3TjlHUBAO7AzxNbuBoJ3ALlAnO1uwHgHkIuLi92NS94B5GJ3Y%40uAdwDZQewgdje2tngHkJ2z3Y2tHd4BZOfiAHF6ubuxdcE7gOxsgXZgp7sbWyDeAWRnd2PrjHcA2YIhznY3tk55B5AtxCkIsbW7sYXgHUC2Tk9PTxG7G1sw3gFk6wwBuzzb3di65B1Ats52N3YOeAeQLdAO7Ayxu7GzxTuAbF2cXpyCdjd2dngHkK2LA9DF2e7GzgXvALK1c7a7sQPiHUC2dg52N3bOeAeQra2zC9jZ7sbOKe8AsrW1tbW1tbuxg%40AdQLYOEFugi92NHRjvALJ1cAECwXY3di55B5Ctg4ODg4Pd/Z19Eg27sQVDMB4PGI8Hu/tb%401v7AA==)
+![График](https://i.screenshot.net/llo1mud)
 
 Результат выполнения программы показал, что метод поиска фибоначчи сработал
 быстрее и ему понадобилось меньше точек для определения приблизительного экстремума при
