@@ -108,10 +108,37 @@ void optimalPassiveSearch(double begin, double end, double epsilon) {
 
 }
 int main() {
-    double a = 0;
-    double b = 3;
-    double eps = 0.1;
-    Fib(a, b, eps);
-    optimalPassiveSearch(a, b, eps);
+    double begin, end, epsilon;
+    std::string userChoice;
+    std::cout << "Hello, user! This is test app =)\n";
+    while(userChoice != "n") {
+        std::cout << "\tEnter value \'a\'\n>> ";
+
+        while(!(std::cin >> begin)) {
+            std::cin.clear();
+            std::cin.ignore(100, '\n');
+            std::cout << "Not a value, try again\n>> ";
+        }
+        std::cout << "Enter value \'b\'\n>> ";
+        while(!(std::cin >> end)) {
+            std::cin.clear();
+            std::cin.ignore(100, '\n');
+            std::cout << "Not a value, try again\n>> ";
+        }
+        std::cout << "Enter epsilon\n>> ";
+        while(!(std::cin >> epsilon)) {
+            std::cin.clear();
+            std::cin.ignore(100, '\n');
+            std::cout << "Not a value, try again\n>> ";
+        }
+        Fib(begin, end, epsilon);
+        optimalPassiveSearch(begin, end, epsilon);
+        userChoice = "";
+        while(userChoice != "n" && userChoice !="y") {
+            std::cout << "\nWant again? (y/n): ";
+            std::cin.clear();
+            std::cin >> userChoice;
+        }
+    }
     return 0;
 }
