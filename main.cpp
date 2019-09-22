@@ -8,19 +8,28 @@ double Function(double x){
 }
 
 int FibonacciNumber(int n) {
-    if (n == 1 || n == 2 )
-        return 1;
-    else
-        return FibonacciNumber(n - 1) + FibonacciNumber(n - 2);
+    return (n == 1 || n == 2) ? 1 : FibonacciNumber(n - 1) + FibonacciNumber(n -2);
 }
 
-void Fib(double begin, double end, double epsilon){
+void PrintPoint(int N, double result_x, double interval) {
+    std::cout << "Number of points: " << N
+              << "\t\tx = " << result_x << " +- "
+              << std::to_string(interval)
+              << "\t\tF(x):= " << Function(result_x) << '\n';
+}
+
+void PrintResult(int N, double result_x, double interval){
+    std::cout << "Result:\nx = " << result_x << " +- " << std::to_string(interval)
+              << "\t\tF(x) = " << Function(result_x)
+              << "\nNumber of points: " << N;
+}
+
+void FibonacciSearch(double begin, double end, double epsilon){
     std::cout<<"\n\n\n\tFibonacci Search:\n\n";
     double begin_new, end_new, x1, x2, result_x, function_in_x1, function_in_x2;
     int N = 3;
     bool done = false;
     while(!done) {
-
         begin_new = begin;
         end_new = end;
         x1 = begin_new + (double)FibonacciNumber(N- 2)/ FibonacciNumber(N) *(end_new - begin_new);
@@ -38,7 +47,6 @@ void Fib(double begin, double end, double epsilon){
                 function_in_x2 = Function(x2);
             }
             else if(function_in_x1 < function_in_x2) {
-
                 end_new = x2;
                 x2 = x1;
                 function_in_x2 = function_in_x1;
@@ -50,19 +58,10 @@ void Fib(double begin, double end, double epsilon){
                 break;
             }
         }
-        result_x = (begin_new + end_new) / 2;
-        std::cout << "Number of points: " << N
-                  << "\t\tx:= " << result_x << " +- "
-                  << std::to_string(fabs(end_new - begin_new) / 2)
-                  << "\t\tF(x):= " << Function(result_x)
-                  << '\n';
+        PrintPoint(N, (begin_new + end_new) / 2,fabs(end_new - begin_new) / 2 );
         N++;
     }
-    result_x = (begin_new + end_new) / 2;
-
-    std::cout << "Result:\nx = " << result_x << " +- " << std::to_string(fabs(end_new - begin_new) / 2)
-              << "\t\tF(x) = " << Function(result_x)
-              << "\nNumber of points: " << N - 1;
+    PrintResult(N - 1, (begin_new + end_new) / 2,fabs(end_new - begin_new) / 2 );
 }
 
 void optimalPassiveSearch(double begin, double end, double epsilon) {
@@ -78,34 +77,21 @@ void optimalPassiveSearch(double begin, double end, double epsilon) {
         x_storage.resize(N+2);
         counter = 0;
 
-        for(double element = begin; element <= end; element += fabs((end - begin)/ (N + 1))) {
+        for(double element = begin; element <= end; element += fabs((end - begin)/ (N + 1)))
             x_storage[counter++] = element;
-        }
+
         for (iterator = 1; iterator < N + 2; iterator++) {
             if (Function(x_storage[iterator]) <= best_y) {
                 best_y = Function(x_storage[iterator]);
                 best_x = x_storage[iterator];
             }
-            if (fabs((end - begin)/ N) <= epsilon) {
+            if (fabs((end - begin)/ N) <= epsilon)
                 done = true;
-            }
-
         }
-
         x_storage.clear();
-
-        std::cout << "Number of points: " << N
-                  << "\t\tx:= " << best_x << " +- "
-                  << std::to_string(fabs((end - begin)/ (N+ 1)))
-                  << "\t\tF(x):= " << best_y
-                  << '\n';
-
-
+        PrintPoint(N, best_x, fabs((end - begin)/ (2 * N)));
     }
-    std::cout << "Result:\nx = " << best_x << " +- " << std::to_string(fabs((end - begin)/ (N+ 1)))
-              << "\t\tF(x) = " << Function(best_x)
-              << "\nNumber of points: " << N;
-
+    PrintResult(N, best_x, fabs((end - begin)/ (2* N)));
 }
 int main() {
     double begin, end, epsilon;
@@ -131,7 +117,7 @@ int main() {
             std::cin.ignore(100, '\n');
             std::cout << "Not a value, try again\n>> ";
         }
-        Fib(begin, end, epsilon);
+        FibonacciSearch(begin, end, epsilon);
         optimalPassiveSearch(begin, end, epsilon);
         userChoice = "";
         while(userChoice != "n" && userChoice !="y") {
