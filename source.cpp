@@ -2,6 +2,7 @@
 #include <cmath>
 #include <string>
 #include <vector>
+#include <iomanip>
 
 double Function(double x){
     return -sqrt(x)*sin(x);
@@ -13,14 +14,15 @@ int FibonacciNumber(int n) {
 
 void PrintPoint(int N, double result_x, double interval) {
     std::cout << "Number of points: " << N
-              << "\t\tx = " << result_x << " +- "
-              << std::to_string(interval)
-              << "\t\tF(x):= " << Function(result_x) << '\n';
+              << "\t\tx = " << std::fixed << std::setprecision(6) << result_x
+              << "\t\tIndefinite interval: " << std::fixed << std::setprecision(6) << interval
+              << "\t\tF(x):= " << std::fixed << std::setprecision(6) << Function(result_x) << '\n';
 }
 
 void PrintResult(int N, double result_x, double interval){
-    std::cout << "Result:\nx = " << result_x << " +- " << std::to_string(interval)
-              << "\t\tF(x) = " << Function(result_x)
+    std::cout << "Result:\nx = " << std::fixed << std::setprecision(6) << result_x
+              << "\t\tIndefinite interval: " << std::fixed << std::setprecision(6) << interval
+              << "\t\tF(x) = " << std::fixed << std::setprecision(6) << Function(result_x)
               << "\nNumber of points: " << N;
 }
 
@@ -53,15 +55,15 @@ void FibonacciSearch(double begin, double end, double epsilon){
                 x1 = begin_new + (double) FibonacciNumber(N - i - 2) / FibonacciNumber(N - i) * (end_new - begin_new);
                 function_in_x1 = Function(x1);
             }
-            if (fabs(end_new - begin_new) <= 2*epsilon) {
+            if (fabs(end_new - begin_new)  <= 2 * epsilon) {
                 done = true;
                 break;
             }
         }
-        PrintPoint(N, (begin_new + end_new) / 2,fabs(end_new - begin_new) / 2 );
+        PrintPoint(N - 2, (begin_new + end_new) / 2,fabs(end_new - begin_new) / 2 );
         N++;
     }
-    PrintResult(N - 1, (begin_new + end_new) / 2,fabs(end_new - begin_new) / 2 );
+    PrintResult(N - 3, (begin_new + end_new) / 2,fabs(end_new - begin_new) / 2 );
 }
 
 void optimalPassiveSearch(double begin, double end, double epsilon) {
@@ -70,7 +72,7 @@ void optimalPassiveSearch(double begin, double end, double epsilon) {
     int N = 0, iterator, counter = 0;
     bool done = false;
     double best_x = 0;
-    double best_y = 1;
+    double best_y = 0;
     std::vector<double> x_storage;
     while(!done) {
         N++;
@@ -80,18 +82,19 @@ void optimalPassiveSearch(double begin, double end, double epsilon) {
         for(double element = begin; element <= end; element += fabs((end - begin)/ (N + 1)))
             x_storage[counter++] = element;
 
+
         for (iterator = 1; iterator < N + 2; iterator++) {
             if (Function(x_storage[iterator]) <= best_y) {
                 best_y = Function(x_storage[iterator]);
                 best_x = x_storage[iterator];
             }
-            if (fabs((end - begin)/ (N+1)) <= epsilon) {
-                done = true;
-                break;
-            }
+
+        }
+        if (fabs((end - begin)/ (N+1)) < epsilon) {
+            done = true;
         }
         x_storage.clear();
-        PrintPoint(N, best_x, fabs((end - begin)/ (1 + N)));
+        PrintPoint(N, best_x, fabs((end - begin)/(1 + N)));
     }
     PrintResult(N, best_x, fabs((end - begin)/ (1 +  N)));
 }
@@ -119,6 +122,7 @@ int main() {
             std::cin.ignore(100, '\n');
             std::cout << "Not a value, try again\n>> ";
         }
+
         FibonacciSearch(begin, end, epsilon);
         optimalPassiveSearch(begin, end, epsilon);
         userChoice = "";
