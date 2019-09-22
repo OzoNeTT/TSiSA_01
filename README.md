@@ -28,14 +28,16 @@
 
 Начало интервала (ak) | Конец интервала (bk) | Длина интервала (l) | f(ak) | f(bk)
 -------- | -------- | -------- | -------- | --------
-0 | 3 | 1.5 | -0 | -0.244427
-1 | 2.33333 | 0.666667 | -0.841471 | -1.10453
-1.56 | 2.28 | 0.36 | -1.24893 | -1.14588
-1.59375 | 2.0625 | 0.234375 | -1.26211 | -1.266
-1.72189 | 2.00592 | 0.142012 | -1.29726 | -1.28433
-1.7619 | 1.93878 | 0.0884354 | -1.3032 | -1.29919
+0 | 3 | 3 | -0 | -0.244427
+1 | 2.33333 | 1.33333 | -0.841471 | -1.10453
+1.56 | 2.28 | 0.72 | -1.24893 | -1.14588
+1.59375 | 2.0625 | 0.46875 | -1.26211 | -1.266
+1.72189 | 2.00592 | 0.284024 | -1.29726 | -1.28433
+1.7619 | 1.93878 | 0.176871 | -1.3032 | -1.29919
+1.80104 | 1.91003 | 0.108997 | -1.30661 | -1.30328
+1.78645 | 1.85455 | 0.0680992 | -1.30562 | -1.30736
 
-Минимальное значение при: x = 1.850340 +- 0.0442175
+Минимальное значение при: x = 1.820496 +- 0.034050
 
 ### Табл. 2 Оптимальный пассивный поиск
 
@@ -75,7 +77,7 @@
 
 ### Графики зависимости погрешности от числа точек
 
-[График](http://yotx.ru/#!1/3_7f2D/YuDfSOG8L%402D4ST10gRDGH/YP9g309Kre1vbPG2IGe7Gzu8A8jp6Slid%40OCdwC5ON3dAPEOIDsXoAvE2e7GGe8AsgXaOdja2d045R1ADmAw0MXZ7v7OPomG3dg5ZTyebjEety4vdve39rf2N7Z4W5Cz3Y0d3hbkYHfjgncAQZztboB4B5DT3Y0z3gHkbHfjlHcAAe3AzhBbuxsI3gHkAnG2uwHjHUAuLi52Ny55B5CL3Y2tA94BZAexg9jd2NriHUB2znY3tnZ4B5CdiwPE6eXuxtYF7wCyswXagZ3ubmyBeAeQnd2NrTPeAWQLhjjb3dg65R1AthCnIMTW7sYWgncA2To9PT1F7G5swXgHkK0zBOzybHdj65J3ANk6293YOeAdQLZAO7AzxO7GzhbvALJ1cXpxCtrd2NnhHUC2Lg5AF2e7GzsXvAPI1s7Z7sYOiHcA2do52N3YOeMdQLa2zi5gZ7sbO6e8A8jW1tbW1tbuxg6CdwDZOkBsgS52N3ZgvAPI1sEFCATb3di55B1Atg4ODg4Odvd39kk07MYWDMF4PGA8Huzub%401v7QMG)
+[График](http://yotx.ru/#!1/3_7f2D/YuDfSOG8L%402D4ST10gRDGH/YP9g309Kre1vbPG2IGe7Gzu8A8jp6Slid%40OCdwC5ON3dAPEOIDsXoAvE2e7GGe8AsgXaOdja2d045R1ADmAw0MXZ7gaCdwA5OAOBLmG7GzDeAeTgAnRwdrC7v7NPomE3dk4Zj6dbjMety4vd/a39rf2NLd4W5Gx3Y4e3BTnY3bjgHUAQZ7sbIN4B5HR344x3ADnb3TjlHUBAO7AzxNbuBoJ3ALlAnO1uwHgHkIuLi92NS94B5GJ3Y%40uAdwDZQewgdje2tngHkJ2z3Y2tHd4BZOfiAHF6ubuxdcE7gOxsgXZgp7sbWyDeAWRnd2PrjHcA2YIhznY3tk55B5AtxCkIsbW7sYXgHUC2Tk9PTxG7G1sw3gFk6wwBuzzb3di65B1Ats52N3YOeAeQLdAO7Ayxu7GzxTuAbF2cXpyCdjd2dngHkK2LA9DF2e7GzgXvALK1c7a7sQPiHUC2dg52N3bOeAeQra2zC9jZ7sbOKe8AsrW1tbW1tbuxg%40AdQLYOEFugi92NHRjvALJ1cAECwXY3di55B5Ctg4ODg4Pd/Z19Eg27sQVDMB4PGI8Hu/tb%401v7AA==)
 
 Результат выполнения программы показал, что метод поиска фибоначчи сработал
 быстрее и ему понадобилось меньше точек для определения приблизительного экстремума при

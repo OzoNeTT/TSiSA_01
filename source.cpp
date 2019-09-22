@@ -18,6 +18,10 @@ void PrintPoint(int N, double result_x, double interval) {
               << "\t\tIndefinite interval: " << std::fixed << std::setprecision(6) << interval
               << "\t\tF(x):= " << std::fixed << std::setprecision(6) << Function(result_x) << '\n';
 }
+
+void PrintPointForReport(double a, double b, double l) {
+    std::cout<< a << " | " << b << " | " << l << " | " << Function(a) << " | " << Function(b) << '\n';
+}
 void PrintResult(int N, double result_x, double interval){
     std::cout << "Result:\nx = " << std::fixed << std::setprecision(6) << result_x
               << "\t\tIndefinite interval: " << std::fixed << std::setprecision(6) << interval
@@ -54,12 +58,13 @@ void FibonacciSearch(double begin, double end, double epsilon){
                 x1 = begin_new + (double) FibonacciNumber(N - i - 2) / FibonacciNumber(N - i) * (end_new - begin_new);
                 function_in_x1 = Function(x1);
             }
-            if (fabs(end_new - begin_new)  <= 2 * epsilon) {
+            if (fabs(end_new - begin_new)  <= epsilon) {
                 done = true;
                 break;
             }
         }
         PrintPoint(N - 2, (begin_new + end_new) / 2,fabs(end_new - begin_new) / 2 );
+        //PrintPointForReport(begin_new, end_new, fabs(end_new - begin_new));
         N++;
     }
     PrintResult(N - 3, (begin_new + end_new) / 2,fabs(end_new - begin_new) / 2 );
@@ -80,7 +85,6 @@ void optimalPassiveSearch(double begin, double end, double epsilon) {
 
         for(double element = begin; element <= end; element += fabs((end - begin)/ (N + 1)))
             x_storage[counter++] = element;
-
 
         for (iterator = 1; iterator < N + 2; iterator++) {
             if (Function(x_storage[iterator]) <= best_y) {
