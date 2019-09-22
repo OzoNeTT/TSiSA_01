@@ -28,7 +28,7 @@ void PrintResult(int N, double result_x, double interval){
 
 void FibonacciSearch(double begin, double end, double epsilon){
     std::cout<<"\n\n\n\tFibonacci Search:\n\n";
-    double begin_new, end_new, x1, x2, result_x, function_in_x1, function_in_x2;
+    double begin_new, end_new, x1, x2, function_in_x1, function_in_x2;
     int N = 3;
     bool done = false;
     while(!done) {
