@@ -18,7 +18,6 @@ void PrintPoint(int N, double result_x, double interval) {
               << "\t\tIndefinite interval: " << std::fixed << std::setprecision(6) << interval
               << "\t\tF(x):= " << std::fixed << std::setprecision(6) << Function(result_x) << '\n';
 }
-
 void PrintResult(int N, double result_x, double interval){
     std::cout << "Result:\nx = " << std::fixed << std::setprecision(6) << result_x
               << "\t\tIndefinite interval: " << std::fixed << std::setprecision(6) << interval
