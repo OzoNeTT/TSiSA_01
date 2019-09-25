@@ -63,7 +63,7 @@ void FibonacciSearch(double begin, double end, double epsilon){
                 break;
             }
         }
-        PrintPoint(N - 2, (begin_new + end_new) / 2,fabs(end_new - begin_new) / 2 );
+        PrintPoint(N - 2, (begin_new + end_new) / 2,fabs(end_new - begin_new) );
         //PrintPointForReport(begin_new, end_new, fabs(end_new - begin_new));
         N++;
     }
@@ -73,34 +73,38 @@ void FibonacciSearch(double begin, double end, double epsilon){
 void optimalPassiveSearch(double begin, double end, double epsilon) {
 
     std::cout<<"\n\n\n\tPassive Search:\n\n";
-    int N = 0, iterator, counter = 0;
-    bool done = false;
-    double best_x = 0;
-    double best_y = 0;
+
+    int N = std::ceil((end- begin) / epsilon);
     std::vector<double> x_storage;
-    while(!done) {
-        N++;
-        x_storage.resize(N+2);
-        counter = 0;
+    double result_x;
+    int counter = 0;
 
-        for(double element = begin; element <= end; element += fabs((end - begin)/ (N + 1)))
-            x_storage[counter++] = element;
+    for (double element = begin + epsilon; element <= end; element += epsilon)
+        x_storage.push_back(element);
 
-        for (iterator = 1; iterator < N + 2; iterator++) {
-            if (Function(x_storage[iterator]) <= best_y) {
-                best_y = Function(x_storage[iterator]);
-                best_x = x_storage[iterator];
-            }
-
+    for (int iterator = 0; iterator < N; iterator++){
+        if(Function(x_storage[iterator]) < Function(x_storage[iterator + 1])) {
+            result_x = (x_storage[iterator - 1] + x_storage[ iterator + 1]) / 2;
+            break;
         }
-        if (fabs((end - begin)/ (N+1)) < epsilon) {
-            done = true;
-        }
-        x_storage.clear();
-        PrintPoint(N, best_x, fabs((end - begin)/(1 + N)));
     }
-    PrintResult(N, best_x, fabs((end - begin)/ (1 +  N)));
+
+    for(auto iterator : x_storage) {
+        counter++;
+        std::cout <<counter << " | " <<  iterator << " | " << Function(iterator) << std::endl;
+    }
+
+    std::cout << "\nNumber of points: " << N - 1<< '\n'
+              << "Extremum: " << result_x
+              <<  "\t\tInterval: "
+              << std::to_string(epsilon)
+              << "\t\tFunction: " << Function(result_x)
+              << '\n' << std::endl;
+
+    x_storage.clear();
 }
+
+
 int main() {
     double begin, end, epsilon;
     std::string userChoice;
