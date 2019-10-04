@@ -74,15 +74,15 @@ void optimalPassiveSearch(double begin, double end, double epsilon) {
 
     std::cout<<"\n\n\n\tPassive Search:\n\n";
 
-    int N = std::ceil((end- begin) / epsilon);
+    int N = std::ceil(2 * (end- begin) / epsilon - 1);
     std::vector<double> x_storage;
     double result_x;
     int counter = 0;
-
-    for (double element = begin + epsilon; element <= end; element += epsilon)
+    double x_interval = (end-begin) / (N+1);
+    for (double element = begin + x_interval; element <= end; element += x_interval)
         x_storage.push_back(element);
 
-    for (int iterator = 0; iterator < N; iterator++){
+    for (int iterator = 0; iterator <= N; iterator++){
         if(Function(x_storage[iterator]) < Function(x_storage[iterator + 1])) {
             result_x = (x_storage[iterator - 1] + x_storage[ iterator + 1]) / 2;
             break;
@@ -94,7 +94,7 @@ void optimalPassiveSearch(double begin, double end, double epsilon) {
         std::cout <<counter << " | " <<  iterator << " | " << Function(iterator) << std::endl;
     }
 
-    std::cout << "\nNumber of points: " << N - 1<< '\n'
+    std::cout << "\nNumber of points: " << N << '\n'
               << "Extremum: " << result_x
               <<  "\t\tInterval: "
               << std::to_string(epsilon)
